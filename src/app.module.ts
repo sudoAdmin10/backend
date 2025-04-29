@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
+import { MuseumModule } from './museum/museum.module';
 
 
 @Module({
@@ -19,8 +20,9 @@ import { UsersModule } from './users/users.module';
       synchronize: false,
     }),
     UsersModule,
+    MuseumModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, MuseumModule],
 })
 export class AppModule { }
