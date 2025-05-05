@@ -14,4 +14,9 @@ export class MuseumService {
         const media = this.mediaRepository.create({ url, media_type: 'image' })
         return this.mediaRepository.save(media);
     }
+
+    async getImages(): Promise<{ url: string }[]> {
+        const images = await this.mediaRepository.find();
+        return images.map((image) => ({ url: image.url }));
+    }
 }

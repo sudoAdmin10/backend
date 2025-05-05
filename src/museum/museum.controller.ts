@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { MuseumService } from './museum.service';
 
 @Controller('museum')
@@ -8,7 +8,12 @@ export class MuseumController {
 
     @Post('upload-image')
     async uploadImg(@Body('url') url: string) {
-        return this.museumService.uploadImage(url)
+        return this.museumService.uploadImage(url);
+    }
+
+    @Get('images')
+    async getImages() {
+        return this.museumService.getImages();
     }
 }
 
