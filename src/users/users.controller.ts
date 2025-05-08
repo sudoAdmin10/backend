@@ -2,6 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
+import { UserModel } from './userDto';
 
 
 @Controller('users')
@@ -14,7 +15,7 @@ export class UsersController {
     }
 
     @Post('login')
-    async login(@Body('email') email: string, @Body('password') password: string): Promise<{ message: string }> {
+    async login(@Body('email') email: string, @Body('password') password: string): Promise<{ message: string; user: UserModel }> {
         const user = await this.usersService.findOneByEmail(email);
         if (!user) {
             throw new Error('Usuario no encontrado');
@@ -25,6 +26,14 @@ export class UsersController {
             throw new Error('Contraseña incorrecta');
         }
 
-        return { message: 'Login exitoso' };
+        return {
+            message: 'Login exitoso', user: {
+                user_id: user.user_id,
+                username: user.username,
+                email: user.email,
+                role: user.role,
+
+            },
+        };
     }
 }
