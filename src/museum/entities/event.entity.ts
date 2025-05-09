@@ -1,9 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({ name: 'museum_items' })
-export class ItemEntity {
+@Entity({ name: 'events' })
+export class EventEntity {
     @PrimaryGeneratedColumn()
-    item_id: number;
+    event_id: number;
 
     @Column()
     title: string;
@@ -13,11 +13,5 @@ export class ItemEntity {
 
     @Column()
     description: string;
-
-    @Column()
-    departament: string;
-
-    @Column()
-    creation_date: string;
 
 }

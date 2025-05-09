@@ -1,23 +1,23 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({ name: 'museum_items' })
-export class ItemEntity {
+@Entity({ name: 'building' })
+export class BuildingEntity {
     @PrimaryGeneratedColumn()
-    item_id: number;
+    building_id: number;
 
     @Column()
-    title: string;
+    name: string;
 
     @Column()
     url: string;
 
     @Column()
-    description: string;
+    function: string;
 
     @Column()
     departament: string;
 
     @Column()
-    creation_date: string;
+    construction_date: string;
 
 }
