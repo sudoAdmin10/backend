@@ -75,14 +75,11 @@ export class MuseumService {
         return createdBuilding;
     }
 
-    async updateItem(item: any): Promise<any> {
+    async updateItem(id: number, item: any): Promise<any> {
         const { item_id, ...updateData } = item;
-
-        return await this.itemRepository.update(
-            { item_id },
-            updateData
-        );
+        return this.itemRepository.update({ item_id: id }, updateData);
     }
+
 
     async deleteItem(id: number): Promise<any> {
         const itemDeleted = await this.itemRepository.delete(id);

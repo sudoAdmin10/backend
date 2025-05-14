@@ -12,14 +12,9 @@ export class MuseumController {
         return this.museumService.uploadImage(url);
     }
 
-    @Get('images')
+    @Get('get-images')
     async getImages() {
         return this.museumService.getImages();
-    }
-
-    @Get('ListImages')
-    async getImagesList() {
-        return this.museumService;
     }
 
     //===================================
@@ -45,12 +40,16 @@ export class MuseumController {
     async postItems(@Body() resp: any) {
         return this.museumService.createItem(resp);
     }
+
     @Patch('item/:id')
     async update(
         @Param('id') id: number,
         @Body() updateItemDto: any
     ) {
-        return this.museumService.updateItem(updateItemDto);
+
+        console.log('📦 ID recibido:', id);
+        console.log('📝 Body recibido:', updateItemDto);
+        return this.museumService.updateItem(id, updateItemDto);
     }
 
     @Delete('delete-item/:id')
